@@ -23,7 +23,7 @@
                         <i class="fa fa-envelope left-icon"></i>
                         <input type="text" placeholder="Username"
                             class="col inp inp-text @error('username') is-invalid @enderror" name="username"
-                            value="{{ old('username') }}" required autocomplete="username" autofocus>
+                            value="Example" required autocomplete="username" autofocus>
                         @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -183,39 +183,39 @@ $(function() {
         b = -b;
     })
 
-    // $("#myform").on('submit', function(e) {
-    //     e.preventDefault();
-    //     $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         }
-    //     });
-    //     var name = $("input[name=username]").val();
-    //     var password = $("input[name=password]").val();
-    //     $.ajax({
-    //         type: 'post',
-    //         url: "{{ route('userlogin') }}",
-    //         data: {
-    //             username: name,
-    //             password: password
-    //         },
-    //         success: function(data) {
+    $("#myform").on('submit', function(e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var name = $("input[name=username]").val();
+        var password = $("input[name=password]").val();
+        $.ajax({
+            type: 'post',
+            url: "{{ route('userlogin') }}",
+            data: {
+                username: name,
+                password: password
+            },
+            success: function(data) {
 
-    //             if (data.success) {
-    //                 location.href = "choose"
-    //             } else {
-    //                 swal({
-    //                     text: data.error,
-    //                     icon: "error",
-    //                     button: "Ok",
-    //                 });
-    //             }
-    //         },
-    //         error: function(xhr, status, error) {
-    //             alert(xhr.responseText + " error");
-    //         }
-    //     });
-    // })
+                if (data.success) {
+                    location.href = "choose"
+                } else {
+                    swal({
+                        text: data.error,
+                        icon: "error",
+                        button: "Ok",
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(xhr.responseText + " error");
+            }
+        });
+    })
 })
 </script>
 @endsection
