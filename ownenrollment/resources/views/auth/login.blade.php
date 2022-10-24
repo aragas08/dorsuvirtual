@@ -22,8 +22,7 @@
                     <div class="form-group row">
                         <i class="fa fa-envelope left-icon"></i>
                         <input type="text" placeholder="Username"
-                            class="col inp inp-text @error('username') is-invalid @enderror" name="username"
-                            value="Example" required autocomplete="username" autofocus>
+                            class="col inp inp-text @error('username') is-invalid @enderror" name="username" required autocomplete="username" autofocus>
                         @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
