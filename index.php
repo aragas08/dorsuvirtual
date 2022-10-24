@@ -4,14 +4,6 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
-session_start();
-if(isset($_SESSION['exist'])){
-    $_SESSION['exist']++;
-}else{
-    $_SESSION['exist'] = 1;
-}
-echo $_SESSION['exist'];
-echo " Exampleaassaa";
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
