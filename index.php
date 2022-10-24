@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 session_start();
+echo "Example ";
 if(isset($_SESSION['exist'])){
     $_SESSION['exist']++;
 }else{
