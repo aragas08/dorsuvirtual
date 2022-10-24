@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/dorsuedu/public_html/dorsu.edu.ph/virtualspace/
+    - export DEPLOYPATH=/home/dorsuedu/public_html/dorsu.edu.ph/
     - /bin/cp -R * $DEPLOYPATH
