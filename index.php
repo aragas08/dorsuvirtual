@@ -11,7 +11,7 @@ if(isset($_SESSION['exist'])){
     $_SESSION['exist'] = 1;
 }
 echo $_SESSION['exist'];
-echo " Example";
+echo " Exampleaaaa";
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
