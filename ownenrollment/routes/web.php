@@ -32,10 +32,9 @@ Route::get('ajaxAssigned', [StudentsController::class, 'ajaxAssigned'])->name('a
 Route::get('/viewStudent/{id}',[StudentsController::class,'viewStudent'])->name('viewStudent');
 Route::get('/checkRequirements/{id}',[StudentsController::class,'checkRequirements'])->name('checkRequirements');
 
-Route::controller(StudentsController::class)->group(function(){
-    Route::post('/upl_stud_csv','uploadStudent')->name('stud_csv');
-    Route::post('/getGrade','getGrade')->name('getGrade');
-});
+Route::post('/getGrade',[StudentsController::class, 'getGrade'])->name('getGrade');
+Route::post('/upl_stud_csv',[StudentsController::class, 'uploadStudent'])->name('stud_csv');
+
 Route::get('/reset',[ResetPasswordController::class,'showResetForm'])->name('reset');
 Route::post('/resetpass',[ResetPasswordController::class,'reset'])->name('password.reset');
 Route::post('/verifypass',[ResetPasswordController::class,'verify'])->name('password.verify');

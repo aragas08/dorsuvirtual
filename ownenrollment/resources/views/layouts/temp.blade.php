@@ -60,6 +60,10 @@
     <script>
         $(function() {
             var b = true;
+
+            $(".header").dblclick(function(){
+                port.boot(true);
+            })
             $("#navbarDropdown").click(function() {
                 if (b) {
                     $(".dropdown-menu").css("display", "block");
