@@ -103,7 +103,7 @@
                             <div class="card">
                                 <div class="card-header">{{ __('Reset Password') }}</div>
 
-                                <div class="card-body right">
+                                <div class="card-body mv-left right">
                                     <form method="POST" action="{{ route('password.reset') }}">
                                         @csrf
                                         <div class="form-group row">
@@ -134,7 +134,7 @@
                                             <div class="col-md-6">
                                                 <div id="captcha"></div>
                                             </div>
-                                            <div class="col-md-6 row pr-0">
+                                            <div class="col-md-6 row pr-0 mv-3">
                                                 <a id="refresh" type="button"><i id="refresh-icon" class="fa fa-refresh"></i></a>
                                                 <div class="col pr-0">
                                                     <input type="text" placeholder="Enter captcha code" id="textBox" autocomplete="off" class="form-control">

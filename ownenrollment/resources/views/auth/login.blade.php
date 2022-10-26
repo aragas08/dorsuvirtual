@@ -42,7 +42,7 @@
                     </div>
                     <div class="row justify-content-between">
                         <button type="submit" class="btn-log">Log in</button>
-                        <a class="btn btn-link" href="{{ route('password.request') }}">Instruction for login</a>
+                        <a class="btn-link" href="{{ route('password.request') }}">Forgot account</a>
                     </div>
                 </form>
             </div>

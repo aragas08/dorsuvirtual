@@ -27,7 +27,7 @@
         <div class="header row">
             <img src="{{asset('light-bootstrap/img/dorsu-cloud-space.png')}}" id="logo-desc">
             <div class="row" id="logo">
-                <img class="ml-3" src="{{asset('light-bootstrap/img/dorsu-logo-s.png')}}">
+                <img class="ml-3" src="{{asset('light-bootstrap/img/DOrSU-Logo-s.png')}}">
                 <a class="text-light">DOrSU Cloud Space</a>
             </div>
             <div class="r-0 mr-3">

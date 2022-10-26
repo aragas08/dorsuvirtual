@@ -219,9 +219,14 @@ body,html{
 
 @media screen and (max-width: 670px){
 
-    .cont-login{
-        background-color: white;
+    .mv-3{
+        margin-top: 16px;
     }
+
+    .mv-left{
+        text-align: left!important;
+    }
+
     .cont-img{
         display: grid;
         width: 100%;
@@ -289,9 +294,10 @@ body,html{
     }
 
     .cont-login{
+        background-color: white;
         width: 70%!important;
         margin: 70px 0 70px 0;
-        padding: 30px!important;
+        padding: 30px 30px 20px 30px!important;
         border-radius: 4px;
         box-shadow: 1px 0 4px 0;
         /* border: 1px solid #8c8a8a; */
@@ -336,7 +342,6 @@ body,html{
 
     .btn-link{
         color: #353535f9!important;
-        background-color: #ffffffbc!important;
         padding: 5px;
     }
 
@@ -346,5 +351,11 @@ body,html{
     }
     .cont-vission>h4{
         font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 384px){
+    .btn-link{
+        margin: 10px auto 0 auto;
     }
 }
