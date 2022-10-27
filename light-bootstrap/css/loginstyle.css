@@ -211,6 +211,20 @@ body,html{
     text-shadow: none;
 }
 
+.footer-text{
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 0px!important;
+}
+
+.footer-text i{
+    width: 20px;
+}
+
+.mv-footer{
+    text-align: left;
+}
+
 @media screen and (max-height:391px){
     .float-right{
         float: none !important;
@@ -219,6 +233,21 @@ body,html{
 }
 
 @media screen and (max-width: 670px){
+
+    .mv-footer{
+        text-align: center!important;
+    }
+
+    
+.footer-text{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px!important;
+}
+
+    .login{
+        height: 100vh!important;
+    }
 
     .mv-3{
         margin-top: 16px;
@@ -295,9 +324,9 @@ body,html{
     }
 
     .cont-login{
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.95);
         width: 70%!important;
-        margin: 70px 0 70px 0;
+        margin: -50px 0 70px 0;
         padding: 30px 30px 20px 30px!important;
         border-radius: 4px;
         box-shadow: 1px 0 4px 0;

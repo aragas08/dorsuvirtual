@@ -1,17 +1,5 @@
 @extends('layouts/temp', ['activePage' => 'login', 'title' => 'DOrSU'])
 @section('content')
-<style>
-    .footer-text{
-        font-size: 19px;
-        font-weight: 500;
-        margin-bottom: 0px!important;
-    }
-
-    .footer-text i{
-        width: 20px;
-    }
-
-</style>
 <div class="cont">
     <img src="{{asset('light-bootstrap/img/sideimage.png')}}" class="cont-img">
         <div class="login w-30per justify">
@@ -105,7 +93,7 @@
     <section class="gray p-5">
         <div class="video-div">
             <div class="vid-cover"><a type="button"><i style="font-size:50px" class="fas fa-play"></i></a></div>
-            <img width="50%" src="{{asset('light-bootstrap/img/screenshot.png')}}">
+            <img width="50%" src="{{asset('light-bootstrap/img/Screenshot.png')}}">
             <video width="50%" hidden controls>
                 <source src="bootstrap/light-bootstrap/img/virtualspacetutorial.mp4" type="video/mp4">
             </video>
@@ -115,7 +103,7 @@
     <section class="resource p-2 mb-4">
         <div class="row" style="justify-content:center">
             <div class="col-1">
-                <img src="{{asset('img/dorsu.png')}}" alt="" class="col-12">
+                <img src="{{asset('img/dorsu.png')}}" alt="" style="width: 100%; min-width: 66px">
             </div>
             <div class="col-3 text-left" style="display: flex; align-items: center;">
                 <div>
@@ -130,7 +118,7 @@
         <div class="row" style="justify-content:center">
             <div class="col-3 min-4 pt-3">
                 <h3>Campus</h3>
-                <div class="text-left">
+                <div class="mv-footer">
                     <p class="footer-text">News</p>
                     <p class="footer-text">Events</p>
                     <p class="footer-text">Campus Maps</p>
@@ -141,7 +129,7 @@
             </div>
             <div class="col-3 min-4 pt-3">
                 <h3>Contact Us</h3>
-                <div class="text-left">
+                <div class="mv-footer">
                 <p class="footer-text">Guang-guang, Dahican, City of Mati Davao Oriental, 8200</p>
                 <div class="ml-4 footer-text"><i class="fas fa-globe"></i> www.dorsu.edu.ph</div>
                 <div class="ml-4 footer-text"><i class="fas fa-phone"></i> +63(087)3883-195</div>
