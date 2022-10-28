@@ -32,10 +32,6 @@ body,html{
     margin: 10px;
 }
 
-.video-sec{
-
-}
-
 .cont-head{
     position: relative;
     display: flex;
@@ -126,19 +122,25 @@ body,html{
 
 .cont-img{
     position: absolute;
-    display: none;
+    display: block;
     right: 0;
-    top: 40px;
     width: 60%;
     height: 100%;
 }
 
+.inner-vission{
+    background-color: #ffffff77;
+}
+
 .cont-vission{
+    display: flex;
     position: absolute;
     margin-top: 1px;
     right: 0;
     height: 100%;
     width: 64%;
+    align-items: center;
+    justify-content: center;
 }
 
 #logo{
@@ -263,9 +265,6 @@ body,html{
         max-height: 584px;
     }
 
-    .cont-vission{
-        text-shadow: 1px 1px 1px white;
-    }
     
     .cont-head{
         display: inline-block;
@@ -292,6 +291,7 @@ body,html{
         position: inherit;
         display: inline;
         width: 100%;
+        text-shadow: 1px 1px 1px white;
         height: 93%!important;
     }
 

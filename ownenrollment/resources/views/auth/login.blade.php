@@ -36,20 +36,22 @@
             </div>
         </div>
         <div class="cont-vission p-5">
-            <h1>VISION</h1>
-            <h4>A university of excellence, innovation and inclusion.</h4>
-            <h1 class="mt-5">MISSION</h1>
-            <ul class="text-justify">
-                <li><h4>To elevate knowledge generation, utilization and distribution</h4></li>
-                <li>
-                    <h4>To promote inclusive sustainable development through research-based higher quality education, technical-vocational skills,
-                        responsive to the needs of local and global community; and
-                    </h4>
-                </li>
-                <li>
-                    <h4>To produce holistic, creative, and inclusive human resource who are responsive and resilient to global challenges while maintaining sense of nationhood.</h4>
-                </li>
-            </ul>
+            <div class="inner-vission">
+                <h1>VISION</h1>
+                <h4>A university of excellence, innovation and inclusion.</h4>
+                <h1 class="mt-5">MISSION</h1>
+                <ul class="text-justify">
+                    <li><h4>To elevate knowledge generation, utilization and distribution</h4></li>
+                    <li>
+                        <h4>To promote inclusive sustainable development through research-based higher quality education, technical-vocational skills,
+                            responsive to the needs of local and global community; and
+                        </h4>
+                    </li>
+                    <li>
+                        <h4>To produce holistic, creative, and inclusive human resource who are responsive and resilient to global challenges while maintaining sense of nationhood.</h4>
+                    </li>
+                </ul>
+            </div>
         </div>
     <svg height="100%" width="width" xmlns="http://www.w3.org/2000/svg">
         <ellipse id="svgelem" cx="7" cy="0" rx="35%" ry="100%" stroke-width="4" fill="blue" />
@@ -92,7 +94,7 @@
     </div>
     <section class="gray p-5">
         <div class="video-div">
-            <div class="vid-cover"><a type="button"><i style="font-size:50px" class="fas fa-play"></i></a></div>
+            <div class="vid-cover"><a id="play" type="button"><i style="font-size:50px" id="fa-loading" class="fas fa-play"></i></a></div>
             <img width="50%" src="{{asset('light-bootstrap/img/Screenshot.png')}}">
             <video width="50%" hidden controls>
                 <source src="bootstrap/light-bootstrap/img/virtualspacetutorial.mp4" type="video/mp4">
@@ -149,6 +151,10 @@
 <script>
 $(function() {
     let b = 1;
+
+    $("#play").click(function(){
+        $("#fa-loading").attr('class',"fas fa-spinner fa-spin");
+    })
     $(".m-search").click(function() {
         if (b == 1) {
             $("#search").css({
