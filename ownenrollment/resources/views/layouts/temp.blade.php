@@ -72,7 +72,6 @@
                     $(".dropdown-menu").css("display", "none");
                     b = true;
                 }
-
             })
             $(window).click(function(event) {
                 if (!event.target.matches("a")) {

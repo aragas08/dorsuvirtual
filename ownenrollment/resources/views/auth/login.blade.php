@@ -96,9 +96,9 @@
         <div class="video-div">
             <div class="vid-cover"><a id="play" type="button"><i style="font-size:50px" id="fa-loading" class="fas fa-play"></i></a></div>
             <img width="50%" src="{{asset('light-bootstrap/img/Screenshot.png')}}">
-            <video width="50%" hidden controls>
+            <!-- <video width="50%" hidden controls>
                 <source src="bootstrap/light-bootstrap/img/virtualspacetutorial.mp4" type="video/mp4">
-            </video>
+            </video> -->
         </div>
     </section>
     <h1>RESOURCES</h1>

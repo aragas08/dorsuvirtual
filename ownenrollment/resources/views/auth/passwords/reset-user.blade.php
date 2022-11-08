@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot password</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('light-bootstrap/css/loginstyle.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet"/>
-    <script src="{{asset('light-bootstrap/js/core/jquery.3.2.1.min.js')}}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@extends('layouts.temp', ['title' => 'Reset'])
+
+@section('content')
     <style>
         .card-title>img{
             height: 55px;
@@ -103,38 +93,34 @@
             margin-top: 10px;
             opacity: 0.77;
         }
-
-        .full-page{
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .form-group{
-            margin-top: 15px;
-        }
-        body{
-            background-color: #f5f6fa;
-        }
     </style>
-</head>
-<body>
-    <div class="full-page col-12">
-                    <div class="col-md-4">
+    <div class="full-page col-12" data-color="black" data-image="{{asset('light-bootstrap/img/dorsu-background.jpg')}}">
+        <div class="content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        @if(!$reset)
                             <div class="card">
                                 <div class="card-header">{{ __('Reset Password') }}</div>
+
                                 <div class="card-body mv-left right">
-                                    <form method="POST" action="{{ route('password.update') }}">
+                                    <form method="POST" action="{{ route('password.reset') }}">
                                         @csrf
-                                        <input type="hidden" name="token" value="{{ $token }}">
-                                        <input type="email" hidden name="email" value="{{ $email ?? old('email') }}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Enter old password:</label>
+                                            <div class="col-md-8">
+                                                <input type="password" name="old_password" class="form-control">
+                                                <a type="button"><i class="fa showpass fa-eye-slash"></i></a>
+                                                <span id="oldpass" class="error" hidden>Wrong password</span>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-4">New password:</label>
                                             <div class="col-md-8 popup">
                                                 <span class="popuptext" id="myPopup">Enter atleast 8 character with combination of special character.</span>
                                                 <input type="password" name="new_password" id="newpass" class="form-control">
                                                 <span class="error"></span>
+                                                <a type="button"><i class="fa showpass fa-eye-slash"></i></a>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -159,7 +145,7 @@
                                         </div>
 
                                         <div class="form-group row mb-0 justify-content-center">
-                                                <button type="button" id="submit" class="btn btn-warning">
+                                                <button type="submit" class="btn btn-warning">
                                                     {{ __('Reset Password') }}
                                                 </button>
                                         </div>
@@ -172,6 +158,18 @@
                                         headers: {
                                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                         }
+                                    })
+                                    $(".showpass").each(function(i){
+                                        $(this).click(function(){
+                                            const text = $(".form-control").eq(i);
+                                            if(text.attr('type') == 'password'){
+                                                text.attr('type','text');
+                                                $(this).attr('class','fa showpass fa-eye');
+                                            }else{
+                                                text.attr('type','password');
+                                                $(this).attr('class','fa showpass fa-eye-slash');
+                                            }
+                                        })
                                     })
 
                                     function matched(){
@@ -317,41 +315,81 @@
                                     $("#textBox").keyup(function(e){
                                         captcha(bool);
                                     })
-
-                                    $("form").submit();
-                                    $("#submit").click(function(){
+                                    
+                                    $("form").on('submit', function(event){
+                                        event.preventDefault();
                                         bool = true;
                                         if(captcha(bool) && matched() && password($("#newpass"))){
-                                            $("form").submit();
+                                            $.ajax({
+                                                url: $(this).attr('action'),
+                                                type: 'post',
+                                                data: new FormData(this),
+                                                contentType:false,
+                                                cache: false,
+                                                processData: false,
+                                                datatype:JSON,
+                                                success: function(result){
+                                                    console.log(result);
+                                                    if(!result.success){
+                                                        $("#oldpass").prop('hidden',false);
+                                                    }else{
+                                                        location.reload();
+                                                    }
+                                                }
+                                            })
                                         }
+                                    })  
+
+                                    $(".popup").click(function(){
+                                        $("#myPopup").toggleClass("show");
                                     })
-                                    
-                                    // $("form").on('submit', function(event){
-                                    //     event.preventDefault();
-                                    //     bool = true;
-                                    //     if(captcha(bool) && matched() && password($("#newpass"))){
-                                    //         $.ajax({
-                                    //             url: $(this).attr('action'),
-                                    //             type: 'post',
-                                    //             data: new FormData(this),
-                                    //             contentType:false,
-                                    //             cache: false,
-                                    //             processData: false,
-                                    //             datatype:JSON,
-                                    //             success: function(result){
-                                    //                 console.log(result);
-                                    //                 if(!result.success){
-                                    //                     $("#oldpass").prop('hidden',false);
-                                    //                 }else{
-                                    //                     location.reload();
-                                    //                 }
-                                    //             }
-                                    //         })
-                                    //     }
-                                    // })  
                                 });
                             </script>
+                        @else
+                            <form action="{{ route('password.verify') }}" method="post">
+                                @csrf
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h1>Enter Verification Code</h1>
+                                        <p>The verification code will be send to {{Auth::user()->email}}</p>
+                                        <input type="text" id="otp" name="otp" class="form-control">
+                                        <button class="btn btn-warning mt-3" id="submit">Submit</button>
+                                        <a id="rcode" type="button">Resend code</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <script>
+                                $(function(){
+                                    $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                    })
+                                    $("form").submit(function(e){
+                                        e.preventDefault();
+                                        $.ajax({
+                                            url: $(this).attr("action"),
+                                            method: 'POST',
+                                            data: new FormData(this),
+                                            contentType: false,
+                                            cache: false,
+                                            dataType: 'json',
+                                            processData: false,
+                                            success: function(result) {
+                                                if(result.success){
+                                                    location.href = "{{route('choose')}}";
+                                                }else{
+                                                    $("#otp").css("border-color","red");
+                                                }
+                                            }
+                                        })
+                                    })
+                                })
+                            </script>
+                        @endif
                     </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+@endsection

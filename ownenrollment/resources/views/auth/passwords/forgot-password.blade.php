@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Forgot password</title>
     <link rel="stylesheet" href="{{ asset('light-bootstrap/css/passwordstyle.css') }}">
     <script src="{{asset('light-bootstrap/js/core/jquery.3.2.1.min.js')}}"></script>
   </head>
@@ -17,18 +18,30 @@
             <div class="card width">
                 <div class="text-center">
                   <div class="card-body">
+                    <a type="button" id="question"><i class="fa fa-question"></i></a>
                     <h3><i class="fa fa-lock fa-4x"></i></h3>
                     <h2 class="text-center">Forgot Password?</h2>
                     <p>Enter your email address and we will send you a password reset link.</p>
-                    <form id="register-form" role="form" autocomplete="off" class="form" method="post">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('password.email') }}" method="post">
+                      @csrf
                       <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-envelope color-blue"></i></span>
-                          <input id="email"  name="email" placeholder="email address" class="form-control" type="email">
+                        <div class="input-group has-validation">
+                          <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                          <input id="email" value="{{ old('email') }}" name="email" autofocus placeholder="email address" class="form-control @error('email') is-invalid @enderror" type="email">
+                          @error('email')
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group">
-                        <input name="recover-submit" class="btn btn-warning mt-3" style="width: 100%;" value="Reset Password" type="submit">
+                        <input name="recover-submit" class="btn btn-warning mt-3" style="width: 100%;" value="Send Password Reset Link" type="submit">
                       </div>
                       
                       <input type="hidden" class="hide" name="token" id="token" value=""> 
@@ -169,9 +182,18 @@
     
     <script>
         $(function(){
-          setTimeout(()=>{
+
+          $("#question").click(function(){
             $(".modal").show();
-          }, 500);
+            $(".modal-content").attr('class',"modal-content show");
+          })
+          if(!sessionStorage.getItem('show')){
+            setTimeout(()=>{
+              $(".modal").show();
+            }, 500);
+            sessionStorage.setItem('show', true);
+          }
+
           $(".close").click(function(){
             $(".modal-content").attr('class',"modal-content hide");
             $(".modal").attr('class',"modal hidestyle");

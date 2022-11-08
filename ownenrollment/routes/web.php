@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-
+use Auth\ResetPasswordController;
+use Auth\ForgotPasswordController;
 Route::get('/clear-cache',function(){
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:cache');
@@ -35,9 +35,7 @@ Route::get('/checkRequirements/{id}',[StudentsController::class,'checkRequiremen
 Route::post('/getGrade',[StudentsController::class, 'getGrade'])->name('getGrade');
 Route::post('/upl_stud_csv',[StudentsController::class, 'uploadStudent'])->name('stud_csv');
 
-Route::get('/reset',[ResetPasswordController::class,'showResetForm'])->name('reset');
-Route::post('/resetpass',[ResetPasswordController::class,'reset'])->name('password.reset');
-Route::post('/verifypass',[ResetPasswordController::class,'verify'])->name('password.verify');
+Route::get('/reset',[App\Http\Controllers\AuthorizeController::class,'showchangepass'])->name('reset');
 Route::resource('/enroll', IncomingStudentsController::class);
 Route::controller(AllumniController::class)->group(function(){
     Route::post('/Province','returnProvince')->name('getProv');
@@ -55,9 +53,18 @@ Route::controller(IncomingStudentsController::class)->group(function(){
     Route::post('/storeStud','store')->name('studIn');
     Route::post('/storeStudent','storeStudent')->name('storestudent');
 });
-Route::get('/forgot-password', function () {
-    return view('auth.passwords.forgot-password');
-})->middleware('guest')->name('password.request');
+
+Route::controller(ResetPasswordController::class)->group(function(){
+    Route::post('/verifypass','verify')->name('password.verify');
+    Route::post('/resetinfo','changeinfo')->name('changeinfo');
+    Route::get('/password/reset/{token}','showResetForm')->name('password.reset');
+    Route::post('/password/reset','reset')->name('password.update');
+});
+
+Route::controller(ForgotPasswordController::class)->group(function(){
+    Route::get('/password/reset','showLinkRequestForm')->name('password.request');
+    Route::post('/password/email','sendResetLinkEmail')->name('password.email');
+});
 Route::resource('/{request}',AuthorizeController::class);
 // Route::post('/upreq',[IncomingStudentsController::class, 'uploadreq'])->name('uploadreq');
 // Route::post('/searchTicket',[IncomingStudentsController::class, 'searchticket']);

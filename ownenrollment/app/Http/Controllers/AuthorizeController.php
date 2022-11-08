@@ -22,6 +22,12 @@ class AuthorizeController extends Controller
         $this->middleware('auth');
     }
 
+    public function showchangepass(Request $request)
+    {
+        // session(['reset'=>false]);
+        return view('auth.passwords.reset-user',['reset'=>session('reset'),'email' => Auth::user()->email]);
+    }
+
     public function getAuthorize(){
         $authorize = DB::table('users')
         ->join('authorization_app','users.id','=','authorization_app.users_id')

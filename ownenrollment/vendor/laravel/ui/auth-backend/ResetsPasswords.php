@@ -21,9 +21,7 @@ trait ResetsPasswords
 {
     use RedirectsUsers;
 
-    public function __construct()
-    {
-        $this->middleware('auth');
+    public function __construct(){
         session(['reset'=>true]);
     }
     /**
@@ -36,7 +34,10 @@ trait ResetsPasswords
      */
     public function showResetForm(Request $request)
     {
-        return view('auth.passwords.reset',['reset'=>session('reset'),'email' => Auth::user()->email]);
+        $token = $request->route()->parameter('token');
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
     }
 
     /**
@@ -47,6 +48,27 @@ trait ResetsPasswords
      */
     public function reset(Request $request)
     {
+        // $request->validate($this->rules(), $this->validationErrorMessages());
+
+        // // Here we will attempt to reset the user's password. If it is successful we
+        // // will update the password on an actual user model and persist it to the
+        // // database. Otherwise we will parse the error and return the response.
+        // $response = $this->broker()->reset(
+        //     $this->credentials($request), function ($user, $password) {
+        //         $this->resetPassword($user, $password);
+        //     }
+        // );
+
+        // // If the password was successfully reset, we will redirect the user back to
+        // // the application's home authenticated view. If there is an error we can
+        // // redirect them back to where they came from with their error message.
+        // return $response == Password::PASSWORD_RESET
+        //             ? $this->sendResetResponse($request, $response)
+        //             : $this->sendResetFailedResponse($request, $response);
+        return response()->json(['example'=>"This is my sample"]);
+    }
+
+    public function changeinfo(Request $request){
         $message = '';
         $b = true;
         if(!Hash::check($request->old_password, Auth::user()->password)){
@@ -56,7 +78,7 @@ trait ResetsPasswords
             $randomNum = rand(100000,999999);
             session(['password'=>$request->new_password,'otp'=>$randomNum]);
             Mail::to(Auth::user()->email)->send(new SendOtp($randomNum));
-            session(['reset'=>false]);
+            session(['reset'=>true]);
         }
         return response()->json(['message'=>$message, 'success'=>$b]);
     }
@@ -64,7 +86,7 @@ trait ResetsPasswords
     public function verify(Request $request){
         $b = true;
         if($request->otp == session('otp')){
-            session(['reset'=>true]);
+            session(['reset'=>false]);
             User::find(Auth::user()->id)->update(['password'=>Hash::make(session('password'))]);
         }else{
             $b = false;
