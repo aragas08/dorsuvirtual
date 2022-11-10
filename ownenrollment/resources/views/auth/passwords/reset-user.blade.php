@@ -104,7 +104,7 @@
                                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                                 <div class="card-body mv-left right">
-                                    <form method="POST" action="{{ route('password.reset') }}">
+                                    <form method="POST" action="{{ route('changeinfo') }}">
                                         @csrf
                                         <div class="form-group row">
                                             <label class="col-md-4">Enter old password:</label>
