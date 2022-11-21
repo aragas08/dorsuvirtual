@@ -23,7 +23,7 @@ Route::get('/', [LoginController::class,'showLoginForm'])->name('login');
 Route::get('/choose',[App\Http\Controllers\AuthorizeController::class,'choose'])->name('choose');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::post('/userlogin',[LoginController::class, 'login'])->name('userlogin');
-Route::post('/userregister',[RegisterController::class, 'sample'])->name('userregister');
+Route::post('/registeruser',[RegisterController::class, 'register'])->name('registeruser');
 Route::get('/welcome',function(){ return view('incomingstudents.welcome'); });
 Route::get('/search',function(){ return view('incomingstudents.search'); });
 

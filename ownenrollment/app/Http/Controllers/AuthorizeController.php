@@ -48,7 +48,7 @@ class AuthorizeController extends Controller
                 switch($request){
                     case 'login': return view('auth.login'); break;
                     case 'admin': return app(HomeController::class)->index(); break;
-                    case 'register': return app(RegisterController::class)->register(); break;
+                    case 'register': return app(RegisterController::class)->showRegistrationForm(); break;
                     case 'alumni': return app(AllumniController::class)->index($this->getSubAuthorize($request)); break;
                     case 'alumniAdmin': return app(AllumniController::class)->alumniAdmin($this->getSubAuthorize($request)); break;
                     case 'grade_inquiry': return app(StudentsController::class)->grade(); break;

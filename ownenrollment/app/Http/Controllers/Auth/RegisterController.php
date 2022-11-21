@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\App;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -36,27 +35,21 @@ class RegisterController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+     */    
     
-    public function register(){
-        $app = App::all();
-        // return view('students.portal.sample',['application'=>$app]);
-        return view('auth.register')->with('apps',$app);
-    }
-    
-    protected function create(array $data)
+    protected function validator(array $data)
     {
-        return Validator::make($request, [
+        return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'institute_id' => ['required', 'integer', 'max:7'],
+            'usertype' => ['required','string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+    }
+
+    protected function create(array $data)
+    {
         return User::create([
             'username' => $data['username'],
             'name' => $data['name'],
