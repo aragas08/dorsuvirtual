@@ -20,12 +20,16 @@
       -webkit-line-clamp: 9;
       line-clamp: 2;
       overflow: hidden;
-      transition: 1s;
     }
 
-    
+    .card-fit{
+        max-height: 1000px;
+        transition: max-height 1s ease-in;
+    }
+
     .card-min{
-        height: 440px;
+        max-height: 440px;
+        transition: max-height 1s ease-out;
     }
 
     .d-flex{
@@ -68,7 +72,7 @@
         $(".btn-default").each(function(i){
             $(this).click(function(){
                 if($(this).val() == 1){
-                    $(".card").eq(i).attr('class',"card mb-4 box-shadow");
+                    $(".card").eq(i).attr('class',"card mb-4 card-fit box-shadow");
                     $(this).text("Hide Details");
                 }else{
                     $(".card").eq(i).attr('class',"card card-min mb-4 box-shadow");

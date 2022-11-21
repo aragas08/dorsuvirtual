@@ -6,6 +6,7 @@ use App\Models\IncomingStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\App;
 use App\Models\Program;
 use App\Models\User;
@@ -74,9 +75,9 @@ class IncomingStudentsController extends Controller{
             $newStud = new Student();
             $newStud->users_id = Auth::user()->id;
             $newStud->id = $request['studentId'];
-            $newStud->first_name = $request['fname']; 
+            $newStud->first_name = openssl_encrypt($request['fname'],"AES-128-ECB",'itsuitsu'); 
             $newStud->middle_name = $request['mname'];
-            $newStud->last_name = $request['lname'];
+            $newStud->last_name = openssl_encrypt($request['lname'],"AES-128-ECB",'itsuitsu');
             $newStud->suffix = $request['suffix'];
             $newStud->birthdate = $request['birthdate'];
             $newStud->birthplace = $request['birthplace'];
@@ -172,9 +173,9 @@ class IncomingStudentsController extends Controller{
             
         }else{ 
             Student::where('users_id',Auth::user()->id)->update([
-                'first_name' => $request['fname'], 
+                'first_name' => openssl_encrypt($request['fname'],"AES-128-ECB",'itsuitsu'), 
                 'middle_name' => $request['mname'],
-                'last_name' => $request['lname'],
+                'last_name' => openssl_encrypt($request['lname'],"AES-128-ECB",'itsuitsu'),
                 'suffix' => $request['suffix'],
                 'birthdate' => $request['birthdate'],
                 'birthplace' => $request['birthplace'],
@@ -268,6 +269,9 @@ class IncomingStudentsController extends Controller{
             $msg = "The information has been updated.";
             $bool = true;
         }
+        $user = User::find(Auth::user()->id);
+        $user->email = $request->email;
+        $user->update();
         return response()->json(['success'=>$bool,'msg'=>$msg]);
     }
     

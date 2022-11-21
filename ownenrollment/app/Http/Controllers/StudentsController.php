@@ -368,7 +368,12 @@ class StudentsController extends Controller
                 'counselors' => '',
             ];
         }
-        return view('students.portal.admissionform',['program'=>$programs,'info'=>$info, 'campus'=>$campus]);
+        return view('students.portal.admissionform',[
+        'program'=>$programs,
+        'info'=>$info, 
+        'campus'=>$campus, 
+        'firstname'=>openssl_decrypt($info->first_name,"AES-128-ECB",'itsuitsu'),
+        'lastname'=>openssl_decrypt($info->last_name,"AES-128-ECB",'itsuitsu')]);
     }
 
     public function assign()

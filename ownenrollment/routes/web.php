@@ -23,7 +23,7 @@ Route::get('/', [LoginController::class,'showLoginForm'])->name('login');
 Route::get('/choose',[App\Http\Controllers\AuthorizeController::class,'choose'])->name('choose');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::post('/userlogin',[LoginController::class, 'login'])->name('userlogin');
-Route::post('/userregister',[RegisterController::class, 'register'])->name('userregister');
+Route::post('/userregister',[RegisterController::class, 'sample'])->name('userregister');
 Route::get('/welcome',function(){ return view('incomingstudents.welcome'); });
 Route::get('/search',function(){ return view('incomingstudents.search'); });
 
@@ -34,6 +34,7 @@ Route::get('/checkRequirements/{id}',[StudentsController::class,'checkRequiremen
 
 Route::post('/getGrade',[StudentsController::class, 'getGrade'])->name('getGrade');
 Route::post('/upl_stud_csv',[StudentsController::class, 'uploadStudent'])->name('stud_csv');
+
 
 Route::get('/reset',[App\Http\Controllers\AuthorizeController::class,'showchangepass'])->name('reset');
 Route::resource('/enroll', IncomingStudentsController::class);

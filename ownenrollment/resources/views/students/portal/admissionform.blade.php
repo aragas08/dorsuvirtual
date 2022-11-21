@@ -57,13 +57,13 @@
                                             </div>
                                         </div>
                                         <div class="col-12 p-0">
-                                            <input type="text" name="fname" value="{{$info->first_name ?? ''}}" id="fname" class="form-control required" placeholder="First name" required>
+                                            <input type="text" name="fname" value="{{$firstname ?? ''}}" id="fname" class="form-control required" placeholder="First name" required>
                                         </div>
                                         <div class="col-12 p-0">
                                             <input type="text" name="mname" id="mname" value="{{$info->middle_name ?? ''}}" class="form-control" placeholder="Middle name">
                                         </div>
                                         <div class="col-12 p-0">
-                                            <input type="text" name="lname" id="lname" value="{{$info->last_name ?? ''}}" class="form-control required" placeholder="Last name" required>
+                                            <input type="text" name="lname" id="lname" value="{{$lastname ?? ''}}" class="form-control required" placeholder="Last name" required>
                                         </div>
                                         <div class="col-md-4 pl-0">
                                             <div class="invalid-feedback">Please fill all the needed information</div>

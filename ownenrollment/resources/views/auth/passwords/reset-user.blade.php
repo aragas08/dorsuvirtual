@@ -107,6 +107,12 @@
                                     <form method="POST" action="{{ route('changeinfo') }}">
                                         @csrf
                                         <div class="form-group row">
+                                            <label class="col-md-4">Username:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="username" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">Enter old password:</label>
                                             <div class="col-md-8">
                                                 <input type="password" name="old_password" class="form-control">

@@ -72,7 +72,7 @@ trait ResetsPasswords
             $b = false;
         }else{
             $randomNum = rand(100000,999999);
-            session(['password'=>$request->new_password,'otp'=>$randomNum]);
+            session(['password'=>$request->new_password,'otp'=>$randomNum,'username'=>$request->username]);
             Mail::to(Auth::user()->email)->send(new SendOtp($randomNum));
             session(['reset'=>true]);
         }
@@ -83,7 +83,7 @@ trait ResetsPasswords
         $b = true;
         if($request->otp == session('otp')){
             session(['reset'=>false]);
-            User::find(Auth::user()->id)->update(['password'=>Hash::make(session('password'))]);
+            User::find(Auth::user()->id)->update(['password'=>Hash::make(session('password')),'username'=>session('username')]);
         }else{
             $b = false;
         }

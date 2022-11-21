@@ -14,6 +14,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AllumniController;
 use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthorizeController extends Controller
 {

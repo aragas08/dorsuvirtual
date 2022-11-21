@@ -73,11 +73,13 @@
                                         </div>
 
                                         <div class="form-group"> {{-- is-invalid make border red --}}
-                                            <select class="custom-select" id="institute_id" name="institute_id">
-                                                <option selected>Choose...</option>
-                                                @foreach($apps as $app)
-                                                    <option value="{{$app->name}}">{{$app->name}}</option>
-                                                @endforeach
+                                            <select class="custom-select" id="usertype" name="usertype">
+                                                <option selected>
+                                                    Choose type of user
+                                                </option>
+                                                <option value="student">Student</option>
+                                                <option value="faculty">Faculty</option>
+                                                <option value="adminstaff">Admin staff</option>
                                             </select>
                                         </div>
 

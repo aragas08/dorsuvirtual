@@ -48,24 +48,20 @@ class RegisterController extends Controller
         return view('auth.register')->with('apps',$app);
     }
     
-    protected function validator(array $data)
+    protected function create(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make($request, [
             'username' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'institute_id' => ['required', 'integer', 'max:7'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-    }
-
-    protected function create(array $data)
-    {
         return User::create([
             'username' => $data['username'],
             'name' => $data['name'],
             'email' => $data['email'],
-            'intitute_id' => $data['institute_id'],
+            'type' => $data['usertype'],
             'password' => Hash::make($data['password']),
         ]);
     }
