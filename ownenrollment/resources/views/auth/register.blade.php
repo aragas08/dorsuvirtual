@@ -77,9 +77,9 @@
                                                 <option selected>
                                                     Choose type of user
                                                 </option>
-                                                <option value="student">Student</option>
-                                                <option value="faculty">Faculty</option>
-                                                <option value="adminstaff">Admin staff</option>
+                                                <option value="Student">Student</option>
+                                                <option value="Faculty">Faculty</option>
+                                                <option value="Admin staff">Admin staff</option>
                                             </select>
                                         </div>
 
