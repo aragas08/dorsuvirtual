@@ -17,7 +17,7 @@
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 9;
+      -webkit-line-clamp: 20;
       line-clamp: 2;
       overflow: hidden;
     }
@@ -56,7 +56,7 @@
                             <div class="card-title col-12">
                                 <p>{{$app->name}}</p>
                             </div>
-                                <p class="text-justify mb-0">{{$app->about}}</p>
+                            <p class="text-justify mb-0">{{$app->about}}</p>
                         </div>
                         <div class="footer">
                             <button value="1" class="btn btn-default">More Details</button>

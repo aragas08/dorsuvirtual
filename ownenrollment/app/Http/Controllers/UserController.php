@@ -25,4 +25,8 @@ class UserController extends Controller
 
         return response()->json($users);
     }
+
+    public function bulletin(){
+        return view('users.bulletin');
+    }
 }

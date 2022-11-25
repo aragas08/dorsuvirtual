@@ -53,6 +53,7 @@ class AuthorizeController extends Controller
                     case 'alumniAdmin': return app(AllumniController::class)->alumniAdmin($this->getSubAuthorize($request)); break;
                     case 'grade_inquiry': return app(StudentsController::class)->grade(); break;
                     case 'sif': return app(StudentsController::class)->info(); break;
+                    case 'bulletin': return app(UserController::class)->bulletin(); break;
                 }
             }else{
                 foreach($this->getSubAuthorize($request) as $subitem){

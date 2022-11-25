@@ -22,24 +22,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    protected function isAuthorize($request){
-        $authorize = DB::table('users')
-        ->join('authorization_app','users.id','=','authorization_app.users_id')
-        ->join('app','authorization_app.app_id','=','app.id')->where('authorization_app.users_id', '=',Auth::id())->get();
-        $b = false;
-        foreach($authorize as $a){
-            if($a->link == $request){
-                $b = true;
-            }
-        }
-        return $b;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index(){
         $enrollees = Student::all();
         $semesters = Semester::all();
